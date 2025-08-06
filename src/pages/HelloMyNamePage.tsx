@@ -1,4 +1,20 @@
+import { useState } from "react";
 export default function HelloMyNamePage() {
+  const [name,setName] = useState("");
+  const [result,setResult] = useState("Please insert your name!");
+  const [isGreetOk,setGreetOk] = useState(false);
+  const greetMtnOnclick = () => {
+    if(name == ""){
+      setResult("Please insert your name!")
+      setGreetOk(false);
+    }else{
+      setResult("Hello : " + name);
+      setGreetOk(true);
+    }
+  }
+  const nameInput = (event:any) => {
+    setName(event.target.value);
+  }
   return (
     <div className="container text-center">
       <h3>Hello My Name</h3>
@@ -6,10 +22,12 @@ export default function HelloMyNamePage() {
         className="form-control d-inline m-1"
         placeholder="Insert your name here!"
         style={{ width: "300px" }}
+        onChange={nameInput}
+        value = {name}
       />
-      <button className="btn btn-primary">Greet Me</button>
+      <button className="btn btn-primary" onClick={greetMtnOnclick}>Greet Me</button>
       {/* Result Text */}
-      <p></p>
+      <p className={isGreetOk? "" : "text-danger"}>{result}</p>
     </div>
   );
 }

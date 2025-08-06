@@ -7,6 +7,7 @@ type props = {
 };
 //1.สร้าง modal ก่อน
 export default function Modal({ onAdd }: props) {
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   //4.ใช้ usestate reset value
